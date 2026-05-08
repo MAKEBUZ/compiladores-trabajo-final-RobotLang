@@ -1,0 +1,60 @@
+Compilación de: input.txt
+ESTADO: EXITOSO
+
+--- TAC ---
+  SENSOR proximidad
+  SENSOR temperatura
+
+FUNC_BEGIN esquivar
+  t1 = proximidad < 10 = proximidad CMP 10
+  IF_FALSE t1 GOTO L1
+  CALL girar_izquierda
+  GOTO L2
+L1:
+  CALL avanzar
+L2:
+FUNC_END esquivar
+
+FUNC_BEGIN monitorear
+  t2 = temperatura > 80 = temperatura CMP 80
+  IF_FALSE t2 GOTO L3
+  CALL apagar_motor
+  GOTO L4
+L3:
+  CALL continuar
+L4:
+FUNC_END monitorear
+
+FUNC_BEGIN main
+  CALL esquivar
+  CALL monitorear
+FUNC_END main
+
+--- PYTHON GENERADO ---
+# ============================================================
+# Código generado automáticamente por RobotLang Compiler
+# Universidad Cooperativa de Colombia — Compiladores 2026
+# ============================================================
+
+# --- Sensores (variables globales) ---
+proximidad = 0
+temperatura = 0
+
+def esquivar():
+    if proximidad < 10:
+        girar_izquierda()
+    else:
+        avanzar()
+
+def monitorear():
+    if temperatura > 80:
+        apagar_motor()
+    else:
+        continuar()
+
+def main():
+    esquivar()
+    monitorear()
+
+# --- Punto de entrada ---
+main()

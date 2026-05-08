@@ -1,0 +1,26 @@
+// ============================================================
+// input.txt — Programa de prueba principal
+// RobotLang — Robot de detección y esquive de obstáculos
+// ============================================================
+
+sensor proximidad;
+sensor temperatura;
+
+rutina esquivar() {
+    si proximidad < 10:
+        ejecutar girar_izquierda();
+    sino:
+        ejecutar avanzar();
+}
+
+rutina monitorear() {
+    si temperatura > 80:
+        ejecutar apagar_motor();
+    sino:
+        ejecutar continuar();
+}
+
+rutina main() {
+    ejecutar esquivar();
+    ejecutar monitorear();
+}
