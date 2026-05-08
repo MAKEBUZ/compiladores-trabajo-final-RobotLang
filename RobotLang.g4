@@ -4,7 +4,7 @@
 //  Universidad Cooperativa de Colombia — Compiladores 2026
 // ============================================================
 
-grammar gramatica;
+grammar RobotLang;
 
 // ─── Regla de inicio ────────────────────────────────────────
 program
