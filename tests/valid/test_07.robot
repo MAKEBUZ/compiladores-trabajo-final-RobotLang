@@ -2,7 +2,7 @@
 sensor ruido;
 rutina silenciar() {
     si ruido > 100:
-        ejecutar modo_silencioso();
+    ejecutar continuar();
 }
 rutina main() {
     ejecutar silenciar();

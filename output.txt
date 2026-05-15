@@ -1,100 +1,80 @@
-Compilación de: input.txt
-ESTADO: EXITOSO
+REPORTE DE PRUEBAS — RobotLang
+=================================================================
 
---- TAC ---
-  SENSOR proximidad
-  SENSOR temperatura
+[PASS] test_01.robot
+       Esperado: PASS | Obtenido: PASS
 
-FUNC_BEGIN esquivar
-  t1 = proximidad < 10 = proximidad CMP 10
-  IF_FALSE t1 GOTO L1
-  CALL girar_izquierda
-  GOTO L2
-L1:
-  CALL avanzar
-L2:
-FUNC_END esquivar
+[PASS] test_02.robot
+       Esperado: PASS | Obtenido: PASS
 
-FUNC_BEGIN monitorear
-  t2 = temperatura > 80 = temperatura CMP 80
-  IF_FALSE t2 GOTO L3
-  CALL apagar_motor
-  GOTO L4
-L3:
-  CALL continuar
-L4:
-FUNC_END monitorear
+[PASS] test_03.robot
+       Esperado: PASS | Obtenido: PASS
 
-FUNC_BEGIN reportar
-  t3 = proximidad < 10 = proximidad CMP 10
-  IF_FALSE t3 GOTO L5
-  CALL alerta_proximidad
-  GOTO L6
-L5:
-  CALL estado_ok
-L6:
-FUNC_END reportar
+[PASS] test_04.robot
+       Esperado: PASS | Obtenido: PASS
 
-FUNC_BEGIN main
-  CALL reportar
-  CALL esquivar
-  CALL monitorear
-FUNC_END main
+[PASS] test_05.robot
+       Esperado: PASS | Obtenido: PASS
 
---- PYTHON GENERADO ---
-# ============================================================
-# Código generado automáticamente por RobotLang Compiler
-# Universidad Cooperativa de Colombia — Compiladores 2026
-# ============================================================
+[PASS] test_06.robot
+       Esperado: PASS | Obtenido: PASS
 
-# --- Sensores (variables globales) ---
-proximidad = 0
-temperatura = 0
+[PASS] test_07.robot
+       Esperado: PASS | Obtenido: PASS
 
-# --- Acciones primitivas del robot ---
-def girar_izquierda():
-    print("Robot girando a la izquierda")
+[PASS] test_08.robot
+       Esperado: PASS | Obtenido: PASS
 
-def avanzar():
-    print("Robot avanzando")
+[PASS] test_09.robot
+       Esperado: PASS | Obtenido: PASS
 
-def apagar_motor():
-    print("Motor apagado")
+[PASS] test_10.robot
+       Esperado: PASS | Obtenido: PASS
 
-def continuar():
-    print("Robot continuando")
+[PASS] error_01.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SEMÁNTICO] Sensor "proximidad" no ha sido declarado (línea 3)
 
-def alerta_proximidad():
-    print("ALERTA: objeto detectado a menos de 10 unidades")
+[PASS] error_02.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SEMÁNTICO] Acción "led_on" no está definida (línea 5)
+       [ERROR SEMÁNTICO] Rutina "main()" es obligatoria pero no fue definida (línea 0)
 
-def estado_ok():
-    print("Estado del robot: todo en orden")
+[PASS] error_03.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SEMÁNTICO] Rutina "rutina_fantasma" no está definida (línea 4)
 
-# --- Rutinas generadas ---
+[PASS] error_04.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SEMÁNTICO] Rutina "main" ya fue declarada (línea 6)
+       [ERROR SEMÁNTICO] Acción "encender" no está definida (línea 4)
+       [ERROR SEMÁNTICO] Acción "apagar" no está definida (línea 7)
 
-def esquivar():
-    if proximidad < 10:
-        girar_izquierda()
-    else:
-        avanzar()
+[PASS] error_05.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SEMÁNTICO] Sensor "temperatura" ya fue declarado (línea 3)
+       [ERROR SEMÁNTICO] Acción "enfriar" no está definida (línea 6)
 
-def monitorear():
-    if temperatura > 80:
-        apagar_motor()
-    else:
-        continuar()
+[PASS] error_06.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SINTÁCTICO] missing ';' at 'rutina' (línea 3, columna 1)
 
-def reportar():
-    if proximidad < 10:
-        alerta_proximidad()
-    else:
-        estado_ok()
+[PASS] error_07.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SINTÁCTICO] extraneous input '<EOF>' expecting {'}', 'si', 'ejecutar', ID} (línea 7, columna 1)
 
-def main():
-    reportar()
-    esquivar()
-    monitorear()
+[PASS] error_08.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR LÉXICO] token recognition error at: '!' (línea 4, columna 18)
+       [ERROR LÉXICO] token recognition error at: '= ' (línea 4, columna 19)
 
-# --- Punto de entrada ---
-if __name__ == "__main__":
-    main()
+[PASS] error_09.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR LÉXICO] token recognition error at: '@' (línea 2, columna 11)
+
+[PASS] error_10.robot
+       Esperado: FAIL | Obtenido: FAIL
+       [ERROR SINTÁCTICO] missing ':' at 'ejecutar' (línea 5, columna 9)
+
+
+Total: 20 | OK: 20 | Fallidos: 0

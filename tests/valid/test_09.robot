@@ -2,9 +2,9 @@
 sensor presion;
 rutina aliviar() {
     si presion > 200:
-        ejecutar abrir_valvula();
+        ejecutar apagar_motor();
     sino:
-        ejecutar cerrar_valvula();
+        ejecutar continuar();
 }
 rutina main() {
     aliviar();

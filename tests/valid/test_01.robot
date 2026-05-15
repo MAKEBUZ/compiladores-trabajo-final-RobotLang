@@ -2,5 +2,5 @@
 sensor luz;
 rutina main() {
     si luz > 50:
-        ejecutar encender_led();
+    ejecutar estado_ok();
 }

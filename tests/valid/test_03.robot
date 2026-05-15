@@ -2,9 +2,9 @@
 sensor temperatura;
 rutina verificar_temp() {
     si temperatura > 90:
-        ejecutar apagar_sistema();
+        ejecutar apagar_motor();
     sino:
-        ejecutar operar_normal();
+        ejecutar estado_ok();
 }
 rutina main() {
     verificar_temp();

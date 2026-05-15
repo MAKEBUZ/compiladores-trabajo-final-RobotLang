@@ -2,9 +2,9 @@
 sensor voltaje;
 rutina controlar() {
     si voltaje < 3.7:
-        ejecutar cargar_bateria();
+        ejecutar avanzar();
     sino:
-        ejecutar operar();
+        ejecutar estado_ok();
 }
 rutina main() {
     ejecutar controlar();

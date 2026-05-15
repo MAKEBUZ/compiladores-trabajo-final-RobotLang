@@ -2,7 +2,7 @@
 sensor estado;
 rutina main() {
     si estado == 1:
-        ejecutar activar_robot();
+        ejecutar alerta_proximidad();
     sino:
-        ejecutar suspender();
+        ejecutar continuar();
 }

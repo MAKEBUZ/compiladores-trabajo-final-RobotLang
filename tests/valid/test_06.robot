@@ -10,15 +10,15 @@ rutina esquivar() {
 }
 rutina iluminar() {
     si luz < 30:
-        ejecutar encender_faro();
+        ejecutar alerta_proximidad();
     sino:
-        ejecutar apagar_faro();
+        ejecutar estado_ok();
 }
 rutina controlar_calor() {
     si temperatura > 75:
-        ejecutar activar_ventilador();
+        ejecutar apagar_motor();
     sino:
-        ejecutar desactivar_ventilador();
+        ejecutar continuar();
 }
 rutina main() {
     ejecutar esquivar();

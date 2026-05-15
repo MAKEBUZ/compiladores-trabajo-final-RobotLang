@@ -3,7 +3,7 @@ sensor proximidad;
 sensor velocidad;
 rutina frenar() {
     si proximidad < 5:
-        ejecutar detener_motor();
+        ejecutar apagar_motor();
     sino:
         ejecutar continuar();
 }
