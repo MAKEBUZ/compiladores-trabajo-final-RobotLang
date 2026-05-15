@@ -1,67 +1,20 @@
 """
-=============================================================
- Análisis Semántico — RobotLang
- Mini-compilador para configuración de robots
- Universidad Cooperativa de Colombia — Compiladores 2026
-=============================================================
+Análisis semántico — Visitor/Verificador
+Contiene `SemanticError` y `SemanticAnalyzer` (alias `SemanticVisitor`).
 """
-
-from typing import Dict, List, Set, Optional
+from typing import Dict, List, Optional
+from .SymbolTable import SymbolTable
 from generated.ast_nodes import (
     ProgramNode, DeclarationNode, RoutineNode,
     ControlNode, ActionNode, CallNode, ExprNode, ASTNode
 )
 
 
-# ─── Tabla de Símbolos ──────────────────────────────────────
-
-class SymbolTable:
-    """Tabla de símbolos con soporte de ámbitos anidados."""
-
-    def __init__(self, parent: Optional['SymbolTable'] = None):
-        self._table: Dict[str, dict] = {}
-        self.parent = parent
-
-    def define(self, name: str, kind: str, line: int):
-        self._table[name] = {'kind': kind, 'line': line, 'used': False}
-
-    def lookup(self, name: str) -> Optional[dict]:
-        if name in self._table:
-            return self._table[name]
-        if self.parent:
-            return self.parent.lookup(name)
-        return None
-
-    def mark_used(self, name: str):
-        if name in self._table:
-            self._table[name]['used'] = True
-        elif self.parent:
-            self.parent.mark_used(name)
-
-    def all_symbols(self) -> Dict[str, dict]:
-        return dict(self._table)
-
-    def print_table(self, title: str = "Tabla de Símbolos"):
-        print(f"\n  {'─'*50}")
-        print(f"  {title}")
-        print(f"  {'─'*50}")
-        print(f"  {'NOMBRE':<20} {'TIPO':<12} {'LÍNEA':>6} {'USADO':>6}")
-        print(f"  {'─'*50}")
-        for name, info in self._table.items():
-            used = "sí" if info['used'] else "no"
-            print(f"  {name:<20} {info['kind']:<12} {info['line']:>6} {used:>6}")
-        print(f"  {'─'*50}")
-
-
-# ─── Errores semánticos ─────────────────────────────────────
-
 class SemanticError(Exception):
     def __init__(self, message: str, line: int = 0):
         self.line = line
         super().__init__(f'[ERROR SEMÁNTICO] {message} (línea {line})')
 
-
-# ─── Analizador semántico ───────────────────────────────────
 
 class SemanticAnalyzer:
     """
@@ -79,16 +32,12 @@ class SemanticAnalyzer:
         self.warnings: List[str] = []
         self._current_scope: Optional[SymbolTable] = None
 
-    # ─── Entrada principal ────────────────────────────────
-
     def analyze(self, program: ProgramNode) -> bool:
         """Retorna True si no hay errores semánticos."""
         self._first_pass(program)
         self._second_pass(program)
         self._check_main()
         return len(self.errors) == 0
-
-    # ─── Primera pasada: registrar declaraciones ──────────
 
     def _first_pass(self, program: ProgramNode):
         # Registrar sensores
@@ -104,8 +53,6 @@ class SemanticAnalyzer:
                 self._error(f'Rutina "{routine.name}" ya fue declarada', routine.line)
             else:
                 self.global_table.define(routine.name, 'rutina', routine.line)
-
-    # ─── Segunda pasada: verificar usos ───────────────────
 
     def _second_pass(self, program: ProgramNode):
         # Verificar sentencias globales
@@ -128,12 +75,9 @@ class SemanticAnalyzer:
                 self._check_statement(stmt.else_branch, scope)
 
         elif isinstance(stmt, ActionNode):
-            # 'ejecutar' puede invocar actuadores externos (no declarados en el lenguaje)
-            # o rutinas definidas. Solo verificamos rutinas si el símbolo existe.
             sym = self.global_table.lookup(stmt.target)
             if sym is not None:
                 self.global_table.mark_used(stmt.target)
-            # Si no está en la tabla, se asume actuador/función externa del robot (válido)
 
         elif isinstance(stmt, CallNode):
             sym = self.global_table.lookup(stmt.name)
@@ -162,14 +106,10 @@ class SemanticAnalyzer:
         else:
             self.global_table.mark_used(expr.left)
 
-    # ─── Verificación de main ─────────────────────────────
-
     def _check_main(self):
         sym = self.global_table.lookup('main')
         if sym is None or sym['kind'] != 'rutina':
             self._error('Rutina "main()" es obligatoria pero no fue definida', 0)
-
-    # ─── Utilidades ───────────────────────────────────────
 
     def _error(self, msg: str, line: int):
         err = SemanticError(msg, line)
@@ -193,3 +133,9 @@ class SemanticAnalyzer:
             for w in self.warnings:
                 print(f"  {w}")
         print("=" * 60 + "\n")
+
+
+# Alias para mantener compatibilidad con el nombre sugerido
+SemanticVisitor = SemanticAnalyzer
+
+__all__ = ["SemanticAnalyzer", "SemanticVisitor", "SemanticError"]
