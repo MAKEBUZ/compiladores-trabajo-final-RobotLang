@@ -20,6 +20,12 @@ def apagar_motor():
 def continuar():
     print("Robot continuando")
 
+def alerta_proximidad():
+    print("ALERTA: objeto detectado a menos de 10 unidades")
+
+def estado_ok():
+    print("Estado del robot: todo en orden")
+
 # --- Rutinas generadas ---
 
 def esquivar():
@@ -34,7 +40,14 @@ def monitorear():
     else:
         continuar()
 
+def reportar():
+    if proximidad < 10:
+        alerta_proximidad()
+    else:
+        estado_ok()
+
 def main():
+    reportar()
     esquivar()
     monitorear()
 

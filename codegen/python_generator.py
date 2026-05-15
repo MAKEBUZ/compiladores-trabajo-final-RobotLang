@@ -74,9 +74,11 @@ class PythonCodeGenerator:
 
         primitive_actions = [
             ("girar_izquierda", "Robot girando a la izquierda"),
-            ("avanzar", "Robot avanzando"),
-            ("apagar_motor", "Motor apagado"),
-            ("continuar", "Robot continuando"),
+            ("avanzar",         "Robot avanzando"),
+            ("apagar_motor",    "Motor apagado"),
+            ("continuar",       "Robot continuando"),
+            ("alerta_proximidad", "ALERTA: objeto detectado a menos de 10 unidades"),  # nuevo
+            ("estado_ok",       "Estado del robot: todo en orden"),                    # nuevo
         ]
 
         for action_name, message in primitive_actions:

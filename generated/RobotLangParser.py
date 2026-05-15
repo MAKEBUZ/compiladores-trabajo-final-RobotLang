@@ -6,7 +6,7 @@ import sys
 if sys.version_info[1] > 5:
 	from typing import TextIO
 else:
-    from typing import TextIO
+	from typing.io import TextIO
 
 def serializedATN():
     return [
@@ -15,21 +15,21 @@ def serializedATN():
         1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,2,1,2,4,2,38,8,2,11,2,12,2,39,1,
         2,1,2,1,3,1,3,1,3,3,3,47,8,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,56,
         8,4,1,5,1,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,7,1,7,1,7,1,7,
-        1,8,1,8,1,8,0,0,9,0,2,4,6,8,10,12,14,16,0,1,1,0,7,9,72,0,21,1,0,
-        0,0,2,27,1,0,0,0,4,31,1,0,0,0,6,46,1,0,0,0,8,48,1,0,0,0,10,57,1,
-        0,0,0,12,63,1,0,0,0,14,68,1,0,0,0,16,72,1,0,0,0,18,22,3,2,1,0,19,
-        22,3,4,2,0,20,22,3,6,3,0,21,18,1,0,0,0,21,19,1,0,0,0,21,20,1,0,0,
-        0,22,23,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,25,1,0,0,0,25,26,
-        5,0,0,1,26,1,1,0,0,0,27,28,5,10,0,0,28,29,5,15,0,0,29,30,5,1,0,0,
-        30,3,1,0,0,0,31,32,5,11,0,0,32,33,5,15,0,0,33,34,5,2,0,0,34,35,5,
-        3,0,0,35,37,5,4,0,0,36,38,3,6,3,0,37,36,1,0,0,0,38,39,1,0,0,0,39,
-        37,1,0,0,0,39,40,1,0,0,0,40,41,1,0,0,0,41,42,5,5,0,0,42,5,1,0,0,
-        0,43,47,3,8,4,0,44,47,3,10,5,0,45,47,3,12,6,0,46,43,1,0,0,0,46,44,
-        1,0,0,0,46,45,1,0,0,0,47,7,1,0,0,0,48,49,5,12,0,0,49,50,3,14,7,0,
-        50,51,5,6,0,0,51,55,3,6,3,0,52,53,5,13,0,0,53,54,5,6,0,0,54,56,3,
-        6,3,0,55,52,1,0,0,0,55,56,1,0,0,0,56,9,1,0,0,0,57,58,5,14,0,0,58,
-        59,5,15,0,0,59,60,5,2,0,0,60,61,5,3,0,0,61,62,5,1,0,0,62,11,1,0,
-        0,0,63,64,5,15,0,0,64,65,5,2,0,0,65,66,5,3,0,0,66,67,5,1,0,0,67,
+        1,8,1,8,1,8,0,0,9,0,2,4,6,8,10,12,14,16,0,1,1,0,12,14,72,0,21,1,
+        0,0,0,2,27,1,0,0,0,4,31,1,0,0,0,6,46,1,0,0,0,8,48,1,0,0,0,10,57,
+        1,0,0,0,12,63,1,0,0,0,14,68,1,0,0,0,16,72,1,0,0,0,18,22,3,2,1,0,
+        19,22,3,4,2,0,20,22,3,6,3,0,21,18,1,0,0,0,21,19,1,0,0,0,21,20,1,
+        0,0,0,22,23,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,25,1,0,0,0,25,
+        26,5,0,0,1,26,1,1,0,0,0,27,28,5,7,0,0,28,29,5,15,0,0,29,30,5,1,0,
+        0,30,3,1,0,0,0,31,32,5,8,0,0,32,33,5,15,0,0,33,34,5,2,0,0,34,35,
+        5,3,0,0,35,37,5,4,0,0,36,38,3,6,3,0,37,36,1,0,0,0,38,39,1,0,0,0,
+        39,37,1,0,0,0,39,40,1,0,0,0,40,41,1,0,0,0,41,42,5,5,0,0,42,5,1,0,
+        0,0,43,47,3,8,4,0,44,47,3,10,5,0,45,47,3,12,6,0,46,43,1,0,0,0,46,
+        44,1,0,0,0,46,45,1,0,0,0,47,7,1,0,0,0,48,49,5,9,0,0,49,50,3,14,7,
+        0,50,51,5,6,0,0,51,55,3,6,3,0,52,53,5,10,0,0,53,54,5,6,0,0,54,56,
+        3,6,3,0,55,52,1,0,0,0,55,56,1,0,0,0,56,9,1,0,0,0,57,58,5,11,0,0,
+        58,59,5,15,0,0,59,60,5,2,0,0,60,61,5,3,0,0,61,62,5,1,0,0,62,11,1,
+        0,0,0,63,64,5,15,0,0,64,65,5,2,0,0,65,66,5,3,0,0,66,67,5,1,0,0,67,
         13,1,0,0,0,68,69,5,15,0,0,69,70,3,16,8,0,70,71,5,16,0,0,71,15,1,
         0,0,0,72,73,7,0,0,0,73,17,1,0,0,0,5,21,23,39,46,55
     ]
@@ -45,13 +45,13 @@ class RobotLangParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "';'", "'('", "')'", "'{'", "'}'", "':'", 
-                     "'<'", "'>'", "'=='", "'sensor'", "'rutina'", "'si'", 
-                     "'sino'", "'ejecutar'" ]
+                     "'sensor'", "'rutina'", "'si'", "'sino'", "'ejecutar'", 
+                     "'<'", "'>'", "'=='" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "SENSOR", "RUTINA", "SI", 
-                      "SINO", "EJECUTAR", "ID", "NUMBER", "WS", "COMMENT" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "SENSOR", "RUTINA", 
+                      "SI", "SINO", "EJECUTAR", "LT", "GT", "EQ", "ID", 
+                      "NUMBER", "WS", "COMMENT" ]
 
     RULE_program = 0
     RULE_declaration = 1
@@ -73,14 +73,14 @@ class RobotLangParser ( Parser ):
     T__3=4
     T__4=5
     T__5=6
-    T__6=7
-    T__7=8
-    T__8=9
-    SENSOR=10
-    RUTINA=11
-    SI=12
-    SINO=13
-    EJECUTAR=14
+    SENSOR=7
+    RUTINA=8
+    SI=9
+    SINO=10
+    EJECUTAR=11
+    LT=12
+    GT=13
+    EQ=14
     ID=15
     NUMBER=16
     WS=17
@@ -160,15 +160,15 @@ class RobotLangParser ( Parser ):
                 self.state = 21
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [10]:
+                if token in [7]:
                     self.state = 18
                     self.declaration()
                     pass
-                elif token in [11]:
+                elif token in [8]:
                     self.state = 19
                     self.routine()
                     pass
-                elif token in [12, 14, 15]:
+                elif token in [9, 11, 15]:
                     self.state = 20
                     self.statement()
                     pass
@@ -178,7 +178,7 @@ class RobotLangParser ( Parser ):
                 self.state = 23 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 56320) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 35712) != 0)):
                     break
 
             self.state = 25
@@ -312,7 +312,7 @@ class RobotLangParser ( Parser ):
                 self.state = 39 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 53248) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 35328) != 0)):
                     break
 
             self.state = 41
@@ -373,12 +373,12 @@ class RobotLangParser ( Parser ):
             self.state = 46
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [12]:
+            if token in [9]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 43
                 self.control()
                 pass
-            elif token in [14]:
+            elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 44
                 self.action()
@@ -655,6 +655,14 @@ class RobotLangParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def LT(self):
+            return self.getToken(RobotLangParser.LT, 0)
+
+        def GT(self):
+            return self.getToken(RobotLangParser.GT, 0)
+
+        def EQ(self):
+            return self.getToken(RobotLangParser.EQ, 0)
 
         def getRuleIndex(self):
             return RobotLangParser.RULE_comparator
@@ -685,7 +693,7 @@ class RobotLangParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 72
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 896) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 28672) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

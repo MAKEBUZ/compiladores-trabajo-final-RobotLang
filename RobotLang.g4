@@ -13,56 +13,44 @@ program
 
 // ─── Declaraciones ──────────────────────────────────────────
 declaration
-    : 'sensor' ID ';'
+    : SENSOR ID ';'
     ;
 
 // ─── Rutinas ────────────────────────────────────────────────
 routine
-    : 'rutina' ID '(' ')' '{' statement+ '}'
+    : RUTINA ID '(' ')' '{' statement+ '}'
     ;
 
 // ─── Sentencias ─────────────────────────────────────────────
-statement
-    : control
-    | action
-    | call
-    ;
+statement : control | action | call ;
 
 control
-    : 'si' expr ':' statement ('sino' ':' statement)?
+    : SI expr ':' statement (SINO ':' statement)?
     ;
 
-action
-    : 'ejecutar' ID '(' ')' ';'
-    ;
-
-call
-    : ID '(' ')' ';'
-    ;
+action : EJECUTAR ID '(' ')' ';' ;
+call   : ID '(' ')' ';' ;
 
 // ─── Expresiones ────────────────────────────────────────────
-expr
-    : ID comparator NUMBER
-    ;
+expr       : ID comparator NUMBER ;
+comparator : LT | GT | EQ ;
 
-comparator
-    : '<'
-    | '>'
-    | '=='
-    ;
-
-// ─── Tokens léxicos ─────────────────────────────────────────
-// Palabras reservadas
+// ─── Keywords ───────────────────────────────────────────────
 SENSOR   : 'sensor'   ;
 RUTINA   : 'rutina'   ;
 SI       : 'si'       ;
 SINO     : 'sino'     ;
 EJECUTAR : 'ejecutar' ;
 
-// Identificadores y números
-ID      : [a-zA-Z_][a-zA-Z_0-9]* ;
-NUMBER  : [0-9]+ ('.' [0-9]+)?   ;
+// ─── Comparadores ───────────────────────────────────────────
+LT : '<'  ;
+GT : '>'  ;
+EQ : '==' ;
 
-// Ignorar espacios y comentarios
+// ─── Identificadores y números ──────────────────────────────
+ID     : [a-zA-Z_][a-zA-Z_0-9]* ;
+NUMBER : [0-9]+ ('.' [0-9]+)?   ;
+
+// ─── Ignorar ────────────────────────────────────────────────
 WS      : [ \t\r\n]+ -> skip ;
 COMMENT : '//' ~[\r\n]* -> skip ;

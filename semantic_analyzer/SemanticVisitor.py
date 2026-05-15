@@ -17,6 +17,17 @@ class SemanticError(Exception):
 
 
 class SemanticAnalyzer:
+
+    PRIMITIVE_ACTIONS = {
+        'girar_izquierda',
+        'avanzar',
+        'apagar_motor',
+        'continuar',
+        'alerta_proximidad',
+        'estado_ok',
+    }
+
+
     """
     Realiza las siguientes verificaciones:
       1. Sensores deben estar declarados antes de usarse en expresiones.
@@ -75,8 +86,16 @@ class SemanticAnalyzer:
                 self._check_statement(stmt.else_branch, scope)
 
         elif isinstance(stmt, ActionNode):
+            # Primitivas del hardware → siempre válidas, saltar verificación
+            if stmt.target in self.PRIMITIVE_ACTIONS:
+                return
+
             sym = self.global_table.lookup(stmt.target)
-            if sym is not None:
+            if sym is None:
+                self._error(
+                    f'Acción "{stmt.target}" no está definida', stmt.line
+                )
+            else:
                 self.global_table.mark_used(stmt.target)
 
         elif isinstance(stmt, CallNode):
@@ -110,6 +129,9 @@ class SemanticAnalyzer:
         sym = self.global_table.lookup('main')
         if sym is None or sym['kind'] != 'rutina':
             self._error('Rutina "main()" es obligatoria pero no fue definida', 0)
+        else:
+            # main siempre se considera usada — es el punto de entrada
+            self.global_table.mark_used('main')
 
     def _error(self, msg: str, line: int):
         err = SemanticError(msg, line)

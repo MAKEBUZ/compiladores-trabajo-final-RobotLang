@@ -20,7 +20,15 @@ rutina monitorear() {
         ejecutar continuar();
 }
 
+rutina reportar() {
+    si proximidad < 10:
+        ejecutar alerta_proximidad();
+    sino:
+        ejecutar estado_ok();
+}
+
 rutina main() {
+    ejecutar reportar();
     ejecutar esquivar();
     ejecutar monitorear();
 }
