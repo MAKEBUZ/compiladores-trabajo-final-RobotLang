@@ -7,6 +7,21 @@
 proximidad = 0
 temperatura = 0
 
+# --- Acciones primitivas del robot ---
+def girar_izquierda():
+    print("Robot girando a la izquierda")
+
+def avanzar():
+    print("Robot avanzando")
+
+def apagar_motor():
+    print("Motor apagado")
+
+def continuar():
+    print("Robot continuando")
+
+# --- Rutinas generadas ---
+
 def esquivar():
     if proximidad < 10:
         girar_izquierda()
@@ -24,4 +39,5 @@ def main():
     monitorear()
 
 # --- Punto de entrada ---
-main()
+if __name__ == "__main__":
+    main()

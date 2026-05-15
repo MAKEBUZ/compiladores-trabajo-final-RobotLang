@@ -1,76 +1,76 @@
-REPORTE DE PRUEBAS — RobotLang
-=================================================================
+Compilación de: input.txt
+ESTADO: EXITOSO
 
-[PASS] test_01.robot
-       Esperado: PASS | Obtenido: PASS
+--- TAC ---
+  SENSOR proximidad
+  SENSOR temperatura
 
-[PASS] test_02.robot
-       Esperado: PASS | Obtenido: PASS
+FUNC_BEGIN esquivar
+  t1 = proximidad < 10 = proximidad CMP 10
+  IF_FALSE t1 GOTO L1
+  CALL girar_izquierda
+  GOTO L2
+L1:
+  CALL avanzar
+L2:
+FUNC_END esquivar
 
-[PASS] test_03.robot
-       Esperado: PASS | Obtenido: PASS
+FUNC_BEGIN monitorear
+  t2 = temperatura > 80 = temperatura CMP 80
+  IF_FALSE t2 GOTO L3
+  CALL apagar_motor
+  GOTO L4
+L3:
+  CALL continuar
+L4:
+FUNC_END monitorear
 
-[PASS] test_04.robot
-       Esperado: PASS | Obtenido: PASS
+FUNC_BEGIN main
+  CALL esquivar
+  CALL monitorear
+FUNC_END main
 
-[PASS] test_05.robot
-       Esperado: PASS | Obtenido: PASS
+--- PYTHON GENERADO ---
+# ============================================================
+# Código generado automáticamente por RobotLang Compiler
+# Universidad Cooperativa de Colombia — Compiladores 2026
+# ============================================================
 
-[PASS] test_06.robot
-       Esperado: PASS | Obtenido: PASS
+# --- Sensores (variables globales) ---
+proximidad = 0
+temperatura = 0
 
-[PASS] test_07.robot
-       Esperado: PASS | Obtenido: PASS
+# --- Acciones primitivas del robot ---
+def girar_izquierda():
+    print("Robot girando a la izquierda")
 
-[PASS] test_08.robot
-       Esperado: PASS | Obtenido: PASS
+def avanzar():
+    print("Robot avanzando")
 
-[PASS] test_09.robot
-       Esperado: PASS | Obtenido: PASS
+def apagar_motor():
+    print("Motor apagado")
 
-[PASS] test_10.robot
-       Esperado: PASS | Obtenido: PASS
+def continuar():
+    print("Robot continuando")
 
-[PASS] error_01.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SEMÁNTICO] Sensor "proximidad" no ha sido declarado (línea 3)
+# --- Rutinas generadas ---
 
-[PASS] error_02.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SEMÁNTICO] Rutina "main()" es obligatoria pero no fue definida (línea 0)
+def esquivar():
+    if proximidad < 10:
+        girar_izquierda()
+    else:
+        avanzar()
 
-[PASS] error_03.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SEMÁNTICO] Rutina "rutina_fantasma" no está definida (línea 4)
+def monitorear():
+    if temperatura > 80:
+        apagar_motor()
+    else:
+        continuar()
 
-[PASS] error_04.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SEMÁNTICO] Rutina "main" ya fue declarada (línea 6)
+def main():
+    esquivar()
+    monitorear()
 
-[PASS] error_05.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SEMÁNTICO] Sensor "temperatura" ya fue declarado (línea 3)
-
-[PASS] error_06.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SINTÁCTICO] Se esperaba "SEMI" pero se encontró "rutina" (RUTINA) (línea 3)
-
-[PASS] error_07.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SINTÁCTICO] Se esperaba "RBRACE" para cerrar rutina "main" pero se encontró fin de archivo (línea 3)
-
-[PASS] error_08.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR LÉXICO] Carácter inesperado "!" en línea 4, columna 18
-       [ERROR LÉXICO] Carácter inesperado "=" en línea 4, columna 19
-
-[PASS] error_09.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR LÉXICO] Carácter inesperado "@" en línea 2, columna 11
-
-[PASS] error_10.robot
-       Esperado: FAIL | Obtenido: FAIL
-       [ERROR SINTÁCTICO] Se esperaba "COLON" pero se encontró "ejecutar" (EJECUTAR) (línea 5)
-
-
-Total: 20 | OK: 20 | Fallidos: 0
+# --- Punto de entrada ---
+if __name__ == "__main__":
+    main()
